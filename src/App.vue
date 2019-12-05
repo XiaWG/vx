@@ -2,6 +2,7 @@
 <template>
   <div id="app">
     <vue-calendar/>
+    ....
   </div>
 </template>
 
