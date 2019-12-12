@@ -1,7 +1,7 @@
 
 <template>
   <div id="app">
-    <vue-calendar/>
+    <vue-calendar></vue-calendar>
   </div>
 </template>
 
