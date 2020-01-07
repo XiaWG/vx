@@ -2,10 +2,14 @@
 
 // 导入单个组件
 import Calendar from './calendar/index'
+import Chess from './chess/index'
+import WaterMask from './watermask/index'
 
 // 以数组的结构保存组件，便于遍历
 const components = [
-  Calendar
+  Calendar,
+  Chess,
+  WaterMask
 ]
 
 // 定义 install 方法

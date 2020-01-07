@@ -1,7 +1,10 @@
 
 <template>
   <div id="app">
-    <vue-calendar></vue-calendar>
+    <span style='width:500px;height:500px;display:block;border:1px solid #ccc'>
+
+    </span>
+    <vue-water-mask container='span'></vue-water-mask>
   </div>
 </template>
 
