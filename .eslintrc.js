@@ -16,9 +16,10 @@ module.exports = {
     }],
     'vue/no-side-effects-in-computed-properties': 'never',
     'vue/no-use-v-if-with-v-for': 'never',
-    'vue/no-unused-components': ["error", {
-      'ignoreWhenBindingPresent': true
-    }],
+    "vue/no-unused-components": "off",
+    // 'vue/no-unused-components': ["error", {
+    //   'ignoreWhenBindingPresent': false
+    // }],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'indent': 'off',
