@@ -7,9 +7,10 @@
       </div>
     </div>
     <div style="width:100%;overflow: hidden;border-left:1px solid #ccc;border-top:1px solid #ccc;">
-      <div v-for='(item,index) in visibleCalendar' :key='index' class='calendar-day-container'
+      <div v-for='(item,index) in visibleCalendar' :key='index'
+      :class="[item.isWeekend ? 'relax' : '', 'calendar-day-container']"
       @mouseenter="handleMouseIn($event.target, item)"
-      @click.stop="handleClickDay(item)">
+      @click.stop="handleClickDay($event.target, item)">
         <slot v-bind:data="item" name="default-appearance">
           <span :class="[item.isCurrentMonth ? '' : 'color-grey', 'localDate']">{{item.local}}</span>
           <span :class="[item.isCurrentMonth ? '' : 'color-grey', item.isCurrentDay ? 'color-red' : '', 'normalDate']">{{item.day}}</span>
@@ -62,8 +63,9 @@
           let yy = utils.getNewDate(date).year
           let mm = utils.getNewDate(date).month + 1
           let dd = date.getDate()
+          let isWeekend = date.getDay() === 6 || date.getDay() === 0 ? true : false
           let local = new MyDate(date).getLocalDate()
-          let _date = {date, year: yy, month: mm, day: dd, local, clickDay: false, isCurrentMonth: false, isCurrentDay: false}
+          let _date = {date, year: yy, month: mm, day: dd, local, isSelected: false, isCurrentMonth: false, isCurrentDay: false, isWeekend}
           if (this.isPreMonth(date) || this.isCurrentMonth(date)) {
             if (this.isCurrentMonth(date)) {
               _date.isCurrentMonth = true
@@ -80,6 +82,13 @@
             }
           }
         }
+        let $els = document.querySelectorAll('.selected')
+        $els.forEach($el => {
+          let classNames = $el.className.split(' ')
+          let ind = classNames.findIndex(cls => cls === 'selected')
+          classNames.splice(ind, 1)
+          $el.className = classNames.join(' ')
+        })
         return calendatArr
       }
     },
@@ -111,7 +120,20 @@
         return currentYear == year && currentMonth == month && currentDay == day
       },
       // 点击某一天
-      handleClickDay (item) {
+      handleClickDay ($el, item) {
+        item.isSelected = !item.isSelected
+        let classNames = $el.className.split(' ')
+        while (!classNames.includes('calendar-day-container')) {
+          $el = $el.parentNode
+          classNames = $el.className.split(' ')
+        }
+        if (classNames.includes('selected')) {
+          let ind = classNames.findIndex(cls => cls === 'selected')
+          classNames.splice(ind, 1)
+        } else {
+          classNames.push('selected')
+        }
+        $el.className = classNames.join(' ')
         this.$emit('click-day-success', item)
       },
       handleMouseIn (item, val) {
@@ -161,9 +183,26 @@
   .calendar-day-container{
     float:left;
     width:14.285%;
-    height:120px;
+    height:100px;
     border-right:1px solid #ccc;
     border-bottom:1px solid #ccc;
+    position: relative;
+  }
+  .relax::before{
+    content: '休';
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #c72f2f;
+    color: #fff;
+    border-radius: 3px;
+  }
+  .calendar-day-container.selected{
+    background:url('../img/check.png') no-repeat center center;
+    background-size: 40%;
   }
   .calendar-week-container{
     float:left;
@@ -225,7 +264,7 @@
     color: #ccc;
   }
   .color-red{
-    background:red;
+    background:#303030;
     color:#fff;
   }
   </style>
