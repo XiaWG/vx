@@ -36,6 +36,7 @@
         </div>
         <div class='calendar-body-main-container'>
           <vue-calendar-month
+          ref="calendarMonth"
           :time="time"
           @click-day-success="handleClickDay"
           @hover-later-success="hoverLaterSuccess"
@@ -120,6 +121,9 @@ export default{
       this.modal.show = item.show
       this.modal.position.top = item.top
       this.modal.position.left = item.left
+    },
+    getDateList () { // 对外暴露当前也所有日期
+      return this.$refs.calendarMonth.calendarList
     }
   }
 }
