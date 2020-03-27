@@ -250,7 +250,6 @@ export default{
 .date-container::after{
   content:'';
   position: absolute;
-  width:100%;
   bottom:0;
   left:0;
   border: 70px solid transparent;
@@ -303,8 +302,6 @@ export default{
   margin-left: -12.5px;
   margin-top: -10px;
   content: '';
-  width: 20px;
-  height: 20px;
   border: 10px solid transparent;
   border-right: 10px solid #303030;
 }
@@ -315,8 +312,6 @@ export default{
   margin-left: -2.5px;
   margin-top: -10px;
   content: '';
-  width: 20px;
-  height: 20px;
   border: 10px solid transparent;
   border-left: 10px solid #303030;
 }

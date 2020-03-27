@@ -4,7 +4,6 @@
 import Calendar from './calendar/index'
 import Chess from './chess/index'
 import WaterMask from './watermask/index'
-import WorkFlow from './workflow/index'
 import Charts from './charts/index'
 
 // 以数组的结构保存组件，便于遍历
@@ -12,7 +11,6 @@ const components = [
   Calendar,
   Chess,
   WaterMask,
-  WorkFlow,
   Charts
 ]
 
