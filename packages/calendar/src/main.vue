@@ -30,7 +30,7 @@
             <div class="btn-group back-today" title="今天" @click="handleToday"></div>
             <div class="btn-group next-month" title="下个月" @click="handleNextMonth"></div>
           </div>
-          <div>
+          <div class="select-day-info">
             <slot name="select-day-info"></slot>
           </div>
         </div>
@@ -330,5 +330,11 @@ export default{
   height: 20px;
   border-radius: 50%;
   background:#303030;
+}
+.select-day-info{
+  width: 140px;
+  height: 350px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
 }
 </style>
